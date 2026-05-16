@@ -1,0 +1,11 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  border: 1px solid #888;
+  border-top: none;
+  padding: 4px 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  right: 60px;
+  left: 10px;
+}
