@@ -12,6 +12,9 @@ A bar showing short icon/text statuses from various websites.
 More complicated... fill in later
 
 The way to do this is have every app implement an "addToBar" function.
+
 Some apps this will copy existing logic (COVID)
+
 Some apps this will do dynamic logic (homework app)
+
 SOME apps... will need PHP to write a hardcoded JS file containing this fn with the data LOL (tracking)
