@@ -7,14 +7,45 @@ A bar showing short icon/text statuses from various websites.
 2) Include `shared/topbar/topbar.js`
 3) Ensure your main app has 24px space on top
 
-## To add something to the topbar
+## To add info to the topbar
 
-More complicated... fill in later
+Your app can add anything it likes to the topbar by posting a JSON blob to:
 
-The way to do this is have every app implement an "addToBar" function.
+`/shared/topbar/additem.php`
 
-Some apps this will copy existing logic (COVID)
+Request params should be:
 
-Some apps this will do dynamic logic (homework app)
+```
+{
+  key: str;   // The key representing this topbar item
+  value: str; // JSON blob containing all info for display
+}
+```
 
-SOME apps... will need PHP to write a hardcoded JS file containing this fn with the data LOL (tracking)
+Items are keyed to the `key` string, so sending info for key X will replace any preexisting info for X. Keys are not displayed to the user.
+
+The JSON info blob is structured as follows:
+
+```
+{
+  text: str;
+  emoji: str;
+  color: str;
+}
+```
+
+All properties are optional. Examples:
+
+```
+{
+  text: 'temp',
+  emoji: '🌡️',
+  color: '#e3ba24',
+}
+
+{
+  emoji: '✅',
+}
+```
+
+How to actually hit this endpoint is up to you.
