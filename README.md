@@ -30,7 +30,8 @@ The JSON info blob is structured as follows:
 {
   text: str;
   emoji: str;
-  color: str;
+  color: str; // Color string to be used directly for CSS styling
+  url: str; // directory name (relative path)
 }
 ```
 

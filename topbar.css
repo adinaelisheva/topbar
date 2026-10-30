@@ -8,4 +8,24 @@
   border-bottom-right-radius: 5px;
   right: 60px;
   left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.topbar .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 2px;
+  padding: 0 2px;
+  font-size: 14px;
+}
+
+.topbar .item:not(:first-child) {
+  border-left: 1px solid #888;
+}
+
+a.item {
+  text-decoration: none;
 }
