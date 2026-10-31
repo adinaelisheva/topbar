@@ -8,22 +8,28 @@
   */
 
   include("config.php");
-  
   if (isset($_POST["key"])) {
     $key = mysqli_real_escape_string($db, $_POST["key"]);
   }
-  if (empty($key)) { die('{"Error":"key cannot be empty"}'); }
+  if (empty($key)) { die('key cannot be empty'); }
   
   if (isset($_POST["value"])) {
     $value = mysqli_real_escape_string($db, $_POST["value"]);
   }
-  if (empty($value)) { die('value cannot be empty'); }
 
   $sql = "INSERT INTO `items` (keystr, value) VALUES ('$key', '$value');";
 
   $result = mysqli_query($db, "SELECT * FROM `items` WHERE keystr = '$key'") or die(mysqli_error($db));
-  if (mysqli_fetch_assoc($result)) {
-    $sql = "UPDATE items SET value = '$value' WHERE keystr = '$key';"
+  $alreadyExists = mysqli_fetch_assoc($result);
+  if ($alreadyExists) {
+    $sql = "UPDATE items SET value = '$value' WHERE keystr = '$key';";
+  }
+  if (empty($value)) {
+    if (!$alreadyExists) {
+      // Record doesn't exist and new value is empty
+      die('Cannot delete nonexistent record');
+    }
+    $sql = "DELETE FROM items WHERE keystr = '$key';";
   }
   
   echo("SQL: $sql ");
