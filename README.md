@@ -9,11 +9,19 @@ A bar showing short icon/text statuses from various websites.
 
 ## Using the topbar JS
 
-It's recommended to include the topbar JS and CSS at the top of your header, so you can easily override the CSS and use helper JS files. The topbar JS provides the following helper function:
+It's recommended to include the topbar JS and CSS at the top of your header, so you can easily override the CSS and use helper JS files. The topbar JS provides the following helper functions:
 
-`async function postToTopbar(key, emoji, color, url, text)`
+```
+async function postToTopbar(key, emoji, color, url, text)
+```
 
 This will take in the info specified (only key is required), create the JSON blob, and update the topbar for you.
+
+```
+reloadTopbar()
+```
+
+After a micro delay, will re-fetch the topbar data and re-render. Useful when making live changes to the topbar info.
 
 ## To add info to the topbar
 

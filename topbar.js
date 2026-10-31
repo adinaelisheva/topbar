@@ -45,6 +45,23 @@ async function postToTopbar(key, emoji, color, url, text) {
   } else {
     console.log(responseBody);
   }
+  reloadTopbar();
+}
+
+function reloadTopbar() {
+  window.setTimeout(() => {
+    const bar = document.querySelector('.topbar');
+    bar.innerHTML = '';
+    loadTopbar();
+  }, 300);
+}
+
+async function loadTopbar() {
+  const bar = document.querySelector('.topbar');
+  const items = await fetchItems();
+  for (const i of items) {
+    addItemToBar(JSON.parse(i), bar);
+  }
 }
 
 async function fetchItems() {
@@ -87,11 +104,8 @@ function addItemToBar(i, bar) {
 async function setupBar() {
   const bar = document.createElement('div');
   bar.classList.add('topbar');
-  const items = await fetchItems();
-  for (const i of items) {
-    addItemToBar(JSON.parse(i), bar);
-  }
   document.body.appendChild(bar);
+  loadTopbar();
 }
 
 window.addEventListener('load', () => { setupBar() });
